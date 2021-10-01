@@ -1,10 +1,7 @@
 import contactBook.Contact;
 import contactBook.ContactBook;
-import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
 
 import java.util.Scanner;
-
-import javax.print.attribute.standard.PrinterLocation;
 
 
 public class Main {
@@ -60,6 +57,7 @@ public class Main {
                     break;
                 case GET_NAME:
                     getName(in,cBook);
+                    break;
                 default:
                     System.out.println(COMMAND_ERROR);
             }
@@ -158,10 +156,10 @@ public class Main {
     private static void getName(Scanner in, ContactBook cBook){
         int number;
         number = Integer.parseInt(in.nextLine());
-        if(!cBook.hasNumber(number)){
+        if(cBook.hasNumber(number)){
             System.out.println(cBook.getNumber(number));
         } else{
-            System.out.println();
+            System.out.println(NUMBER_NOT_EXIST);
         }
     }
 }
