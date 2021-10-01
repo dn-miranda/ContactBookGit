@@ -1,7 +1,10 @@
 import contactBook.Contact;
 import contactBook.ContactBook;
+import jdk.javadoc.internal.doclets.formats.html.SourceToHTMLConverter;
 
 import java.util.Scanner;
+
+import javax.print.attribute.standard.PrinterLocation;
 
 
 public class Main {
@@ -9,6 +12,7 @@ public class Main {
     public static final String ADD_CONTACT    = "AC";
     public static final String REMOVE_CONTACT = "RC";
     public static final String GET_PHONE      = "GP";
+    public static final String GET_NAME       = "GN";
     public static final String GET_EMAIL      = "GE";
     public static final String SET_PHONE      = "SP";
     public static final String SET_EMAIL      = "SE";
@@ -21,6 +25,7 @@ public class Main {
     public static final String CONTACT_ADDED = "contactBook.Contact added.";
     public static final String CONTACT_REMOVED = "contactBook.Contact removed.";
     public static final String CONTACT_UPDATED = "contactBook.Contact updated.";
+    public static final String NUMBER_NOT_EXIST = "Phone number does not exist.";
     public static final String BOOK_EMPTY = "contactBook.Contact book empty.";
     public static final String QUIT_MSG = "Goodbye!";
     public static final String COMMAND_ERROR = "Unknown command.";
@@ -53,6 +58,8 @@ public class Main {
                 case LIST_CONTACTS:
                     listAllContacts(cBook);
                     break;
+                case GET_NAME:
+                    getName(in,cBook);
                 default:
                     System.out.println(COMMAND_ERROR);
             }
@@ -146,5 +153,15 @@ public class Main {
             }
         }
         else System.out.println(BOOK_EMPTY);
+    }
+
+    private static void getName(Scanner in, ContactBook cBook){
+        int number;
+        number = Integer.parseInt(in.nextLine());
+        if(!cBook.hasNumber(number)){
+            System.out.println(cBook.getNumber(number));
+        } else{
+            System.out.println();
+        }
     }
 }
