@@ -1,5 +1,7 @@
 package contactBook;
 
+import java.util.HashSet;
+
 import contactBook.Contact;
 
 public class ContactBook {
@@ -67,6 +69,16 @@ public class ContactBook {
     //Pre: name != null && hasContact(name)
     public void setEmail(String name, String email) {
         contacts[searchIndex(name)].setEmail(email);
+    }
+
+    public boolean hasRepeats() {
+        HashSet<Integer> set = new HashSet<>();
+        for(int i = 0; i < counter; ++i) {
+            Integer phone = contacts[i].getPhone();
+            if(set.add(phone) == false)
+                return true;
+        }
+        return false;
     }
 
     private int searchIndex(String name) {
